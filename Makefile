@@ -260,6 +260,9 @@ all: modules
 modules:
 	$(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KSRC) M=$(shell pwd)  modules
 
+modules_arm:
+	$(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KERNEL_SRC) M=$(shell pwd)  modules_arm
+
 strip:
 	$(CROSS_COMPILE)strip $(MODULE_NAME).ko --strip-unneeded
 
@@ -270,6 +273,9 @@ installfw:
 install:
 	install -p -m 644 $(MODULE_NAME).ko  $(MODDESTDIR)
 	/sbin/depmod -a ${KVER}
+
+install_arm:
+	$(MAKE) -C $(KERNEL_SRC) M=$(SRC) install_arm	
 
 uninstall:
 	rm -f $(MODDESTDIR)/$(MODULE_NAME).ko
