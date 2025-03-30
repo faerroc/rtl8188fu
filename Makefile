@@ -265,6 +265,9 @@ modules:
 modules_arm:
 	$(MAKE) -C $(KERNEL_SRC) M=$(SRC)
 
+modules_install:
+	$(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install	
+
 strip:
 	$(CROSS_COMPILE)strip $(MODULE_NAME).ko --strip-unneeded
 
@@ -272,12 +275,9 @@ installfw:
 	mkdir -p /lib/firmware/rtlwifi
 	cp -n firmware/* /lib/firmware/rtlwifi/.
 
-install_pc:
+install:
 	install -p -m 644 $(MODULE_NAME).ko  $(MODDESTDIR)
 	/sbin/depmod -a ${KVER}
-
-install:
-	$(MAKE) -C $(KERNEL_SRC) M=$(SRC) install_arm
 
 uninstall:
 	rm -f $(MODDESTDIR)/$(MODULE_NAME).ko
