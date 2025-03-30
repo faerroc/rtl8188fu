@@ -272,11 +272,11 @@ installfw:
 	mkdir -p /lib/firmware/rtlwifi
 	cp -n firmware/* /lib/firmware/rtlwifi/.
 
-install:
+install_pc:
 	install -p -m 644 $(MODULE_NAME).ko  $(MODDESTDIR)
 	/sbin/depmod -a ${KVER}
 
-install_arm:
+install:
 	$(MAKE) -C $(KERNEL_SRC) M=$(SRC) install_arm
 
 uninstall:
