@@ -255,7 +255,7 @@ else
 
 export CONFIG_RTL8188FU = m
 
-all: modules
+all: modules_arm
 
 modules:
 	$(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KSRC) M=$(shell pwd)  modules
@@ -286,7 +286,7 @@ config_r:
 	/bin/bash script/Configure script/config.in
 
 
-.PHONY: modules clean
+.PHONY: modules_arm clean
 
 clean:
 	cd hal/phydm/ ; rm -fr */*.mod.c */*.mod */*.o */.*.cmd */*.ko
